@@ -1,0 +1,28 @@
+{
+  "name": "teste-backend---lets-delivery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "ts-node test/index.test.ts",
+    "docker:up": "docker-compose up -d",
+    "create-table": "ts-node src/utils/createTableCustomer.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.733.0",
+    "@aws-sdk/util-dynamodb": "^3.733.0",
+    "@types/aws-lambda": "^8.10.147",
+    "aws-sdk": "^2.1692.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "serverless-dynamodb": "^0.2.56",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^14.4.0"
+  }
+}

@@ -1,0 +1,89 @@
+service: CRUD-customers
+
+plugins:
+  - serverless-offline
+  - serverless-dynamodb
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+    stages:
+      - dev
+  tableName: Customer
+
+iamRoleStatements:
+  - Effect: 'Allow'
+    Action:
+      - 'dynamodb:*'
+    Resource: '*'
+
+provider:
+  name: aws
+  deploymentMethod: changesets
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    CUSTOMER_TABLE: Customer
+ 
+functions:
+  createCustomer:
+    handler: src/handlers/index.createCustomer
+    events:
+      - http:
+          path: /customer
+          method: post
+          cors: true
+
+  getAllCustomers:
+    handler: src/handlers/index.getAllCustomers
+    events:
+      - http:
+          path: /customers
+          method: get
+          cors: true      
+
+  getCustomerById:
+    handler: src/handlers/index.getCustomerById
+    events:
+      - http:
+          path: /customer/{id}
+          method: get
+          cors: true        
+
+  updateCustomerById:
+    handler: src/handlers/index.updateCustomerById
+    events:
+      - http:
+          path: /customer/{id}
+          method: patch
+          cors: true
+
+  deleteCustomerById:
+    handler: src/handlers/index.deleteCustomer
+    events:
+      - http:
+          path: /customer/{id}
+          method: delete
+          cors: true      
+
+resources:
+  Resources:
+    Customer:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Customer
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+         - AttributeName: id
+           KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        
+package:
+  exclude:
+    - node_modules/**
