@@ -25,6 +25,50 @@ Esse projeto foi desenvolvido utilizando uma arquitetura **serverless** com a fi
    npm run create-table
 ## Executando os testes
 
+
 Para executar os testes, utilize o seguinte comando:
-  ```
-  npm run test
+      
+      npm run test
+
+## Rotas
+ * POST - /dev/customer
+   
+   Body request
+   ```JSON
+   {
+    "fullName": "João gomes",
+    "dataOfBirth": "01/01/2000",
+    "isActive": true,
+    "listAddress": [
+        {
+            "street": "Av Brasil",
+            "number": 5955,
+            "complement": "apt 404",
+            "neighborhood": "vila california",
+            "city": "São Paulo",
+            "state": "SP",
+            "zipCode": "12345-678"
+        }
+    ],
+    "listContact": [
+        {
+            "email": "joao@test.com",
+            "phone": "(11)99999-9999",
+            "isMain": true
+        }
+    ]
+   }
+   ```
+  * GET /dev/customers
+  * GET /dev/customer/{id}
+  * PATCH /dev/customer/{id}
+  * 
+    Exemplo:
+    ```JSON
+    {
+       "fullName": "João Silva",
+       "isActive": false,
+       "dateOfBirth": "20/02/2000"
+    }
+    ```
+   * DELETE /dev/customer/{id}
