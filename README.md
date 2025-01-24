@@ -7,6 +7,7 @@ Esse projeto foi desenvolvido utilizando uma arquitetura **serverless** com a fi
 - Node.js (versão 20.x ou superior)
 - npm (gerenciador de pacotes do Node.js)
 - Docker (para rodar o DynamoDB localmente)
+- Serverless 
 
 ## Instalação
 
@@ -23,6 +24,10 @@ Esse projeto foi desenvolvido utilizando uma arquitetura **serverless** com a fi
 2. Crie a tabela no DynamoDB:
    ```
    npm run create-table
+3. Para executar o programa 
+   ```
+   sls offline
+
 ## Executando os testes
 
 
