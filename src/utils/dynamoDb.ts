@@ -1,6 +1,14 @@
-import { CreateTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 
+const { REGION, ENDPOINT_DYNAMODB, ACCESS_KEY_ID, SECRET_ACCESS_KEY } =
+  process.env;
+
+console.log(REGION);
 export const dbClient = new DynamoDBClient({
-  region: "local",
-  endpoint: "http://localhost:8000",
+  region: REGION,
+  endpoint: ENDPOINT_DYNAMODB,
+  credentials: {
+    accessKeyId: ACCESS_KEY_ID,
+    secretAccessKey: SECRET_ACCESS_KEY,
+  },
 });
