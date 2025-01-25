@@ -23,7 +23,7 @@ iamRoleStatements:
 provider:
   name: aws
   deploymentMethod: changesets
-  runtime: nodejs20.x
+  runtime: nodejs22.x
   stage: ${opt:stage, 'dev'}
   region: us-east-1
   environment:
